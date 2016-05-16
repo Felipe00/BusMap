@@ -86,7 +86,8 @@ public class WebserviceStrans {
      * @return
      */
     public static String getBodyFormat(String email, String password) {
-        return MessageFormat.format("{\"email\":\"{1}\", \"password\":\"{2}\"}", email, password);
+        return "{\"email\":\""+email+"\", \"password\":\""+password+"\"}";
+        // return MessageFormat.format("{\"email\":\"{0}\", \"password\":\"{1}\"}", email, password);
     }
 
     /**

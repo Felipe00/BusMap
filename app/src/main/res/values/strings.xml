@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BusMap</string>
+    <string name="btn_search_lines">Buscar Linhas</string>
 </resources>

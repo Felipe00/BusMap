@@ -19,8 +19,6 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activities.VolleyActivity">
-        </activity>
     </application>
 
 </manifest>

@@ -5,3 +5,4 @@
 
 + Métodos implementados:
   * Sign In
+  * Buscar Linhas

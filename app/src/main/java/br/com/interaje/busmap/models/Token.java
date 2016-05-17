@@ -1,4 +1,4 @@
-package br.com.interaje.busmap.model;
+package br.com.interaje.busmap.models;
 
 /**
  * Created by rayquaza on 16/05/16.

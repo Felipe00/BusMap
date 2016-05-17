@@ -1,6 +1,7 @@
 package br.com.interaje.busmap.webservices;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -57,13 +58,14 @@ public class WebserviceStrans {
 
     /**
      * Converte a String em uma entidade Chave/Valor que o LoopJ entende.
-     * @param body
+     * @param email
+     * @param password
      * @return
      */
-    public static StringEntity getBodyEntity(String body) {
+    public static StringEntity getBodyEntity(String email, String password) {
         StringEntity bodyEntity = null;
         try {
-            bodyEntity = new StringEntity(body.toString());
+            bodyEntity = new StringEntity(getBodyFormat(email, password));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -76,6 +78,12 @@ public class WebserviceStrans {
      * @param value
      */
     public static void addHeader(String key, String value) {
+        try {
+            client.removeHeader(key);
+        } catch (Exception e) {
+            Log.e(TAG, "Cabeçalho não encontrado, criando novo: " + key);
+            e.printStackTrace();
+        }
         client.addHeader(key, value);
     }
 
@@ -85,7 +93,7 @@ public class WebserviceStrans {
      * @param password
      * @return
      */
-    public static String getBodyFormat(String email, String password) {
+    private static String getBodyFormat(String email, String password) {
         return "{\"email\":\""+email+"\", \"password\":\""+password+"\"}";
         // return MessageFormat.format("{\"email\":\"{0}\", \"password\":\"{1}\"}", email, password);
     }
@@ -125,6 +133,14 @@ public class WebserviceStrans {
             e.printStackTrace();
         }
         return sf;
+    }
+
+    public static void initializeHeaders() {
+        client.removeAllHeaders();
+        addHeader("Content-Type", "application/json");
+        addHeader("Accept-Language", "en");
+        addHeader("Date", getDateFormat());
+        addHeader("X-Api-Key", API_KEY);
     }
 
 }

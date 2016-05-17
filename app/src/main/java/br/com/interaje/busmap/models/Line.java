@@ -1,9 +1,12 @@
-package br.com.interaje.busmap.model;
+package br.com.interaje.busmap.models;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by rayquaza on 16/05/16.
  */
-public class Lines {
+public class Line {
 
     private Long id;
     private String code;
@@ -11,6 +14,18 @@ public class Lines {
     private String lineOrigin;
     private String lineReturn;
     private Boolean circular;
+
+    public Line() {
+
+    }
+
+    public Line (JSONObject object) throws JSONException {
+        this.code = object.getString("CodigoLinha");
+        this.description = object.getString("Denomicao");
+        this.lineOrigin = object.getString("Origem");
+        this.lineReturn = object.getString("Retorno");
+        this.circular = object.getBoolean("Circular");
+    }
 
     public Long getId() {
         return id;

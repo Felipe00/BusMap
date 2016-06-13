@@ -10,4 +10,6 @@ import br.com.interaje.busmap.models.Line;
 public interface ApiStransResponse {
 
     void onFinishRequest(List<Line> lineList);
+
+    void onFinishBusesRequest(Line line);
 }

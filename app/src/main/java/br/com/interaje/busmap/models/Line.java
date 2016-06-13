@@ -1,7 +1,10 @@
 package br.com.interaje.busmap.models;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by rayquaza on 16/05/16.
@@ -14,6 +17,7 @@ public class Line {
     private String lineOrigin;
     private String lineReturn;
     private Boolean circular;
+    private List<Bus> buses;
 
     public Line() {
 
@@ -25,6 +29,12 @@ public class Line {
         this.lineOrigin = object.getString("Origem");
         this.lineReturn = object.getString("Retorno");
         this.circular = object.getBoolean("Circular");
+        JSONArray array = object.getJSONArray("Veiculos");
+        Bus bus = null;
+        for (int i = 0; i < array.length(); i++) {
+            bus = new Bus(array.getJSONObject(i));
+            this.buses.add(bus);
+        }
     }
 
     public Long getId() {
@@ -73,5 +83,13 @@ public class Line {
 
     public void setCircular(Boolean circular) {
         this.circular = circular;
+    }
+
+    public List<Bus> getBuses() {
+        return buses;
+    }
+
+    public void setBuses(List<Bus> buses) {
+        this.buses = buses;
     }
 }

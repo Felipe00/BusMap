@@ -11,4 +11,6 @@ public interface ApiStrans {
 
     void getLines(String searchParam, ProgressDialog dialog);
 
+    void getBuses(String codeBus);
+
 }

@@ -39,7 +39,7 @@ public class WebserviceStrans {
      */
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.setURLEncodingEnabled(true);
-        client.setSSLSocketFactory(getSSLFactory());
+        //client.setSSLSocketFactory(getSSLFactory());
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 

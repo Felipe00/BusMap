@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -58,5 +61,10 @@ public class MainActivity extends AppCompatActivity implements ApiStransResponse
             content = "Nenhuma resultado encontrado ";
             result.setText(content);
         }
+    }
+
+    @Override
+    public void onFinishBusesRequest(Line line) {
+
     }
 }

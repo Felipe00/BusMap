@@ -1,0 +1,22 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=FF:10:C2:34:2A:87:C3:57:38:37:7C:E0:4D:5D:13:F5:D3:A1:7E:68%3Bbr.com.interaje.busmap.activities
+
+    You can also add your credentials to an existing key, using this line:
+    FF:10:C2:34:2A:87:C3:57:38:37:7C:E0:4D:5D:13:F5:D3:A1:7E:68;br.com.interaje.busmap.activities
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <!-- Project in console: BusMap (fiery-booth-131703) -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+         AIzaSyDYF9o490Dg9wwWVagTbK21Sk4z_2UVygA
+    </string>
+</resources>

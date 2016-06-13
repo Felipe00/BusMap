@@ -29,13 +29,18 @@ public class ApiStransImpl implements ApiStrans {
     private static final String TAG = "API_STRANS_IMPL";
     private Context mContext;
     private final ProgressDialog mDialog;
-    private ApiStransResponse response;
+    private ApiStransResponse apiStransResponse;
 
     public ApiStransImpl(Context context, ProgressDialog dialog, ApiStransResponse response) {
         mContext = context;
-        signIn("fcostax02@gmail.com", "123456");
+
+        Token.key = "0248ddd3-70ed-49c5-bc24-7293eb177705";
+
+        if (Token.key == null)
+            signIn("fcostax02@gmail.com", "123456");
+
         mDialog = dialog;
-        this.response = response;
+        this.apiStransResponse = response;
     }
 
     @Override
@@ -90,14 +95,41 @@ public class ApiStransImpl implements ApiStrans {
                     e.printStackTrace();
                 }
                 dialog.dismiss();
-                response.onFinishRequest(listLines);
+                apiStransResponse.onFinishRequest(listLines);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.w(TAG, "Não foi possível acessar a API [Get/Linhas?busca]" + new String(responseBody));
                 dialog.dismiss();
-                response.onFinishRequest(listLines);
+                apiStransResponse.onFinishRequest(listLines);
+            }
+        });
+    }
+
+    @Override
+    public void getBuses(String codeBus) {
+        if (Token.key == null) {
+            signIn("fcostax02@gmail.com", "123456");
+        }
+        Log.d("Token ->>", Token.key);
+        WebserviceStrans.addHeader("X-Auth-Token", Token.key);
+        WebserviceStrans.get("/v1/veiculosLinha?busca=" + codeBus, null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try {
+                    Log.d("-->>", new String(responseBody));
+                    JSONObject object = new JSONObject(new String(responseBody));
+                    Line line = new Line(object);
+                    apiStransResponse.onFinishBusesRequest(line);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d("-->>", new String(responseBody));
             }
         });
     }

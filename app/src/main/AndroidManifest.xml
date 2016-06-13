@@ -36,7 +36,7 @@
         </activity>
         <activity android:name=".activities.BusLocationActivity"></activity>
         <activity
-            android:name=".activities.busMapActivity"
+            android:name=".activities.BusMapActivity"
             android:label="@string/title_activity_bus_map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
